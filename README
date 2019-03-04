@@ -1,0 +1,50 @@
+at_lat_ea/ (libat_lat_ea.a) is a library for computation in atomic lattice
+ordered effect algebras. Each such algebra is a union of blocks (atomic
+MV-effect algebras). Each block is specified by the list of atoms (atom_id(s))
+and by the list of orders of these atoms. If all orders are 1, it provides
+computation in orthomodular lattices.
+
+
+*MV_Block* is a class that contains `number of atoms`, the list of atom_ids, the
+list of corresponding orders.
+	
+	Example: MV_Block b{3, {1,2,3}, {2, 3, 5}};
+		- b represents atomic MV-effect algebra with 
+		  atoms `1`, `2`, `3` with orders 2, 3, 5, respectively, i.e., `1`(2), `2`(3), `3`(5).
+
+
+*Lattice_EA* is a class that specify a list (std::vector) of MV_Block(s)
+
+	Examples: Lattice_EA l{b};
+		- l is a atomic lattice effect algebra consisting of a single block
+		Lattice_EA l2{{2, {1,2}, {3, 4}}, {3, {2,3,4}, {4, 1, 1}};
+		- l2 contains two blocks, one with two atoms `1`(3), `2`(4) and other with `2`(4), `3`(1), `4`(1).
+		
+*Lattice_EA_ops* is a class that take Lattice_EA specification and provides basic operations on it.
+
+	Examples of usage are in lattice_ea_tests.cpp file.
+
+	Example: Lattice_EA_ops lo{l2};
+		
+		get_size() - provides number of elements in lo.
+		Each element is specified in Lattice_EA class as a pair (b, e), 
+		where b is block index (from 0) and e is index of an element in block b. 
+		In Lattice_EA_ops each element is specified just by an index (int).
+
+		Operations provided: 
+
+		*Before accessing any operation generate_ops() method must be called.*
+
+		order(e1, e2) - returns 1 if e1 <= e2, otherwise it returns 0
+		
+		inf(e1, e2) - returns infimum of e1 and e2, if infimum does not exists it returns -1
+			- e1 ^ e2
+
+		sup(e1, e2) - returns supremmum of e1 and e2, if supremmum does not exists it returns -1
+			- e1 v e2
+
+		oplus(e1, e2) - return e1 + e2, if it does not exists, returns -1
+
+		orthodupplement(e) - returns e'
+
+		impl(e1, e2) - returs e1' + (e1 ^ e2)
