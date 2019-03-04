@@ -40,11 +40,11 @@ list of corresponding orders.
 		inf(e1, e2) - returns infimum of e1 and e2, if infimum does not exists it returns -1
 			- e1 ^ e2
 
-		sup(e1, e2) - returns supremmum of e1 and e2, if supremmum does not exists it returns -1
+		sup(e1, e2) - returns supremum of e1 and e2, if supremum does not exists it returns -1
 			- e1 v e2
 
 		oplus(e1, e2) - return e1 + e2, if it does not exists, returns -1
 
-		orthodupplement(e) - returns e'
+		orthosupplement(e) - returns e'
 
-		impl(e1, e2) - returs e1' + (e1 ^ e2)
+		impl(e1, e2) - returns e1' + (e1 ^ e2)
