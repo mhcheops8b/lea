@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.8)
 
 project(at_lat_ea)
 set(CMAKE_CXX_FLAGS "-Wall -pedantic -O3 -Wextra")
